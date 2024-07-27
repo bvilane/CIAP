@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -12,12 +13,13 @@ app.config['JWT_SECRET_KEY'] = '551d706b2e8e651d0450030b459eaf16684c5262be00a4cf
 
 db = SQLAlchemy(app)
 jwt = JWTManager(app)
+migrate = Migrate(app, db)
 
 # Models
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
-    password = db.Column(db.String(120), nullable=False)
+    password = db.Column(db.String(255), nullable=False)  # Increased length
     data_used = db.Column(db.Float, default=0.0)
 
 # Initialize database
