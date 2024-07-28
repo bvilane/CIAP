@@ -16,10 +16,19 @@ branch_labels = None
 depends_on = None
 
 def upgrade():
-    # Handle duplicates: Append an ID to duplicated emails before setting them unique
+    # First, add all columns, including 'email' with a default to ensure it exists.
+    with op.batch_alter_table('user', schema=None) as batch_op:
+        batch_op.add_column(sa.Column('name', sa.String(length=100), nullable=True, server_default="Unknown"))
+        batch_op.add_column(sa.Column('surname', sa.String(length=100), nullable=True, server_default="Unknown"))
+        batch_op.add_column(sa.Column('email', sa.String(length=120), nullable=True, server_default="noemail@example.com"))
+        batch_op.add_column(sa.Column('country', sa.String(length=100), nullable=True, server_default="South Africa"))
+        batch_op.add_column(sa.Column('town', sa.String(length=100), nullable=True, server_default="Soweto"))
+        batch_op.add_column(sa.Column('zone', sa.Integer(), nullable=True, server_default="1"))
+
+    # After ensuring 'email' exists, update to address potential duplicates.
     op.execute("""
         UPDATE "user"
-        SET email = email || '_' || id::text
+        SET email = email || '_' || CAST(id AS TEXT)
         WHERE id IN (
             SELECT id FROM (
                 SELECT id, ROW_NUMBER() OVER (PARTITION BY email ORDER BY id) as row_num
@@ -28,15 +37,15 @@ def upgrade():
             WHERE t.row_num > 1
         );
     """)
-    
-    # Continue with adding new columns
+
+    # Now set non-null constraints and the unique constraint for 'email'
     with op.batch_alter_table('user', schema=None) as batch_op:
-        batch_op.add_column(sa.Column('name', sa.String(length=100), nullable=False, server_default="Unknown"))
-        batch_op.add_column(sa.Column('surname', sa.String(length=100), nullable=False, server_default="Unknown"))
-        batch_op.add_column(sa.Column('email', sa.String(length=120), nullable=False, server_default="noemail@example.com"))
-        batch_op.add_column(sa.Column('country', sa.String(length=100), nullable=False, server_default="South Africa"))
-        batch_op.add_column(sa.Column('town', sa.String(length=100), nullable=False, server_default="Soweto"))
-        batch_op.add_column(sa.Column('zone', sa.Integer(), nullable=False, server_default="1"))
+        batch_op.alter_column('name', nullable=False)
+        batch_op.alter_column('surname', nullable=False)
+        batch_op.alter_column('email', nullable=False)
+        batch_op.alter_column('country', nullable=False)
+        batch_op.alter_column('town', nullable=False)
+        batch_op.alter_column('zone', nullable=False)
         batch_op.create_unique_constraint("uq_email", ['email'])
 
 def downgrade():
@@ -48,5 +57,3 @@ def downgrade():
         batch_op.drop_column('email')
         batch_op.drop_column('surname')
         batch_op.drop_column('name')
-
-    # ### end Alembic commands ###
