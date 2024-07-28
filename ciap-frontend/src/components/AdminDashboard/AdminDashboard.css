@@ -59,10 +59,13 @@ body {
     color: white;
     cursor: pointer;
     font-size: 16px;
+    display: block;  /* Ensures the button fills the entire list item space */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effects */
 }
 
 .sidebar-list-item button:hover {
     background-color: #555;
+    color: #eee;  /* Changes the text color on hover for better visibility */
 }
 
 .icon {
