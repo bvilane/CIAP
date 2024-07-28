@@ -1,0 +1,19 @@
+.navbar {
+    background-color: #0A68D4;
+    padding: 10px 20px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-brand {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.navbar-links a {
+    color: white;
+    margin-left: 20px;
+    font-size: 18px;
+}

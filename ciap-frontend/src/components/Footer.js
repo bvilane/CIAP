@@ -6,23 +6,23 @@ const Footer = () => {
             <footer className="footer p-10 justify-items-center">
                 <div>
                     <span className="footer-title">Services</span>
-                    <a className="link link-hover">Internet Access</a>
-                    <a className="link link-hover">Community Support</a>
-                    <a className="link link-hover">Education Resources</a>
-                    <a className="link link-hover">Online Safety</a>
+                    <button className="link link-hover">Internet Access</button>
+                    <button className="link link-hover">Community Support</button>
+                    <button className="link link-hover">Education Resources</button>
+                    <button className="link link-hover">Online Safety</button>
                 </div>
                 <div>
                     <span className="footer-title">Company</span>
-                    <a className="link link-hover">About CIAP</a>
-                    <a className="link link-hover">Contact Us</a>
-                    <a className="link link-hover">Careers</a>
-                    <a className="link link-hover">News</a>
+                    <button className="link link-hover">About CIAP</button>
+                    <button className="link link-hover">Contact Us</button>
+                    <button className="link link-hover">Careers</button>
+                    <button className="link link-hover">News</button>
                 </div>
                 <div>
                     <span className="footer-title">Legal</span>
-                    <a className="link link-hover">Terms of Service</a>
-                    <a className="link link-hover">Privacy Policy</a>
-                    <a className="link link-hover">Cookie Policy</a>
+                    <button className="link link-hover">Terms of Service</button>
+                    <button className="link link-hover">Privacy Policy</button>
+                    <button className="link link-hover">Cookie Policy</button>
                 </div>
             </footer>
             <div className="text-center py-8">

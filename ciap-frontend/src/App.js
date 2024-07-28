@@ -1,12 +1,14 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import Header from './components/Header'; // Make sure this is correctly imported
-import Footer from './components/Footer'; // Make sure this is correctly imported
+import Header from './components/Header'; 
+import Footer from './components/Footer';
 import Dashboard from './components/Dashboard';
 import AdminDashboard from './components/AdminDashboard';
 import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm'; // Assume you have this component
 import HomePage from './components/Home/HomePage';
+import './App.css';  // Global styles
+
 
 function App() {
   const token = localStorage.getItem('token');

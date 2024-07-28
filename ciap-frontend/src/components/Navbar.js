@@ -1,31 +1,34 @@
-// src/components/Navbar.js
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import './Navbar.css';  // Assuming a separate CSS file for Navbar styles
 
 function Navbar() {
+  const navigate = useNavigate();
   const token = localStorage.getItem('token');
   const isAdmin = localStorage.getItem('is_admin') === 'true';
 
   const logout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('is_admin');
-    window.location.href = '/'; // Redirect to homepage after logout
+    navigate('/');  // Using navigate for redirection
   };
 
   return (
-    <nav>
-      <Link to="/">Home</Link>
-      {token ? (
-        <>
-          {isAdmin ? <Link to="/admin-dashboard">Admin Dashboard</Link> : <Link to="/dashboard">Dashboard</Link>}
-          <button onClick={logout}>Logout</button>
-        </>
-      ) : (
-        <>
-          <Link to="/login">Login</Link>
-          <Link to="/register">Register</Link> {/* Make sure this link leads to a register component */}
-        </>
-      )}
+    <nav className="navbar">
+      <Link to="/" className="navbar-brand">CIAP</Link>
+      <div className="navbar-links">
+        {token ? (
+          <>
+            {isAdmin ? <Link to="/admin-dashboard">Admin Dashboard</Link> : <Link to="/dashboard">Dashboard</Link>}
+            <button onClick={logout}>Logout</button>
+          </>
+        ) : (
+          <>
+            <Link to="/login">Login</Link>
+            <Link to="/register">Register</Link>
+          </>
+        )}
+      </div>
     </nav>
   );
 }
