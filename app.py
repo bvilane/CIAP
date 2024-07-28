@@ -22,8 +22,9 @@ migrate = Migrate(app, db)
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
-    password = db.Column(db.String(255), nullable=False)  # Increased length for hash
+    password = db.Column(db.String(255), nullable=False)  # Ensure length is appropriate for hashed passwords
     data_used = db.Column(db.Float, default=0.0)
+    is_admin = db.Column(db.Boolean, default=False)  # New field to indicate if the user is an admin
 
 # Initialize database
 with app.app_context():
@@ -38,14 +39,16 @@ def home():
 def register():
     username = request.json.get('username')
     password = request.json.get('password')
+    is_admin = request.json.get('is_admin', False)  # Optionally allow setting admin status
     if User.query.filter_by(username=username).first():
         return jsonify({"message": "Username already taken"}), 409
 
     hashed_password = generate_password_hash(password)
-    new_user = User(username=username, password=hashed_password)
+    new_user = User(username=username, password=hashed_password, is_admin=is_admin)
     db.session.add(new_user)
     db.session.commit()
     return jsonify({"message": "User registered"}), 201
+
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -53,14 +56,21 @@ def login():
     password = request.json.get('password')
     user = User.query.filter_by(username=username).first()
     if user and check_password_hash(user.password, password):
-        access_token = create_access_token(identity=user.id)
-        return jsonify(access_token=access_token)
+        access_token = create_access_token(identity={"id": user.id, "is_admin": user.is_admin})
+        return jsonify(access_token=access_token, is_admin=user.is_admin)
     return jsonify({"message": "Bad username or password"}), 401
+
 
 @app.route('/data_usage', methods=['POST'])
 @jwt_required()
 def update_data_usage():
-    user_id = get_jwt_identity()
+    claims = get_jwt_identity()
+    user_id = claims['id']
+    is_admin = claims['is_admin']
+    
+    if not is_admin:
+        return jsonify({"message": "Unauthorized - Admins only"}), 403
+
     data_used = request.json.get('data_used', 0.0)
     user = User.query.get(user_id)
     if user:
@@ -68,6 +78,7 @@ def update_data_usage():
         db.session.commit()
         return jsonify({"message": "Data usage updated"}), 200
     return jsonify({"message": "User not found"}), 404
+
 
 if __name__ == '__main__':
     app.run(debug=True)
