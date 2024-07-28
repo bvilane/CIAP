@@ -1,0 +1,91 @@
+/* AdminDashboard.css */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+#sidebar {
+    background-color: #333;
+    color: white;
+    min-height: 100vh;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transition: all 0.3s ease;
+}
+
+.sidebar-responsive {
+    left: -250px;
+}
+
+.sidebar-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #222;
+    border-bottom: 1px solid #444;
+}
+
+.sidebar-brand {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.close_icon {
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.sidebar-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-list-item {
+    padding: 15px 20px;
+}
+
+.sidebar-list-item button {
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.sidebar-list-item button:hover {
+    background-color: #555;
+}
+
+.icon {
+    margin-right: 10px;
+}
+
+/* Main content area */
+.main-content {
+    margin-left: 250px;
+    padding: 20px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    #sidebar {
+        left: -250px;
+    }
+
+    .sidebar-responsive {
+        left: 0;
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+}
