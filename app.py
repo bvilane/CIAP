@@ -20,8 +20,14 @@ migrate = Migrate(app, db)
 # Models
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    surname = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
     username = db.Column(db.String(80), unique=True, nullable=False)
     password = db.Column(db.String(255), nullable=False)  # Ensure length is appropriate for hashed passwords
+    country = db.Column(db.String(100), nullable=False, default='South Africa')
+    town = db.Column(db.String(100), nullable=False, default='Soweto')
+    zone = db.Column(db.Integer, nullable=False)
     data_used = db.Column(db.Float, default=0.0)
     is_admin = db.Column(db.Boolean, default=False)  # New field to indicate if the user is an admin
 
@@ -36,14 +42,21 @@ def home():
 
 @app.route('/register', methods=['POST'])
 def register():
+    name = request.json.get('name')
+    surname = request.json.get('surname')
+    email = request.json.get('email')
     username = request.json.get('username')
     password = request.json.get('password')
-    is_admin = request.json.get('is_admin', False)  # Optionally allow setting admin status
-    if User.query.filter_by(username=username).first():
-        return jsonify({"message": "Username already taken"}), 409
+    zone = request.json.get('zone')
+    
+    if User.query.filter_by(email=email).first() or User.query.filter_by(username=username).first():
+        return jsonify({"message": "Email or Username already taken"}), 409
 
+    if not re.match(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$', password):
+        return jsonify({"message": "Password must include at least 1 uppercase, 1 lowercase, 1 number, and 1 special character, and be at least 8 characters long"}), 400
+    
     hashed_password = generate_password_hash(password)
-    new_user = User(username=username, password=hashed_password, is_admin=is_admin)
+    new_user = User(name=name, surname=surname, email=email, username=username, password=hashed_password, zone=zone)
     db.session.add(new_user)
     db.session.commit()
     return jsonify({"message": "User registered"}), 201
