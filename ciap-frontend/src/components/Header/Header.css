@@ -20,8 +20,36 @@
     color: white;
     text-decoration: none;
     margin-left: 20px;
+    transition: color 0.3s ease; /* Smooth transition for color change */
 }
 
 .navigation .nav-link:hover {
     text-decoration: underline;
+    color: #BBD7FF; /* Lighter shade on hover for better visual feedback */
+}
+
+.navigation .nav-link:focus {
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.2); /* Background on focus for accessibility */
+}
+
+.navigation .nav-link.active {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        padding: 20px;
+    }
+    .navigation {
+        margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+    }
+    .navigation .nav-link {
+        margin: 10px 0; /* Adds vertical spacing between links on smaller screens */
+    }
 }
