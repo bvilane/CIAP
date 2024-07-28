@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import Header from './components/Header';
-import Footer from './components/Footer';
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
 import Dashboard from './components/Dashboard';
 import AdminDashboard from './components/AdminDashboard';
 import LoginForm from './components/LoginForm';

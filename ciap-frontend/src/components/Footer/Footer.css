@@ -1,0 +1,50 @@
+/* Footer.css */
+.footer {
+    background-color: #0A68D4; /* Dark blue background */
+    color: white;
+    padding: 20px; /* Uniform padding */
+    display: flex;
+    justify-content: space-evenly; /* Even spacing between columns */
+    align-items: center; /* Vertical alignment */
+    flex-wrap: wrap; /* Allows wrapping for smaller screens */
+}
+
+.footer div {
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+    align-items: center; /* Center-align the items */
+    min-width: 150px; /* Minimum width for each column */
+}
+
+.footer-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px; /* Space between title and buttons */
+}
+
+.link {
+    background: none;
+    border: none;
+    color: white;
+    padding: 10px; /* Padding inside buttons */
+    cursor: pointer; /* Pointer cursor on hover */
+    text-align: center; /* Center text inside buttons */
+    width: 100%; /* Full width for touch target */
+    transition: background-color 0.2s; /* Smooth transition for hover effect */
+}
+
+.link:hover {
+    background-color: #0056b3; /* Darker blue when hovered */
+}
+
+.text-center {
+    text-align: center; /* Centers the copyright text */
+    width: 100%; /* Full width to align center */
+    padding-top: 20px; /* Space above the text */
+    font-size: 14px;
+}
+
+.footer-container {
+    width: 100%; /* Full width of footer */
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for separation */
+}

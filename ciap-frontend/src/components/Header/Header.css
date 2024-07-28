@@ -1,0 +1,27 @@
+/* This CSS is already correctly targeting elements based on the updated Header.js */
+.header {
+    background-color: #0A68D4;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.header .logo .navbar-brand {
+    color: white;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.navigation .nav-link {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+}
+
+.navigation .nav-link:hover {
+    text-decoration: underline;
+}

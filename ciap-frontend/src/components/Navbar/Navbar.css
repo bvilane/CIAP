@@ -1,0 +1,39 @@
+/* Navbar.css */
+.navbar {
+    background-color: #0A68D4; /* Blue background */
+    color: white;
+    padding: 0.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none; /* Removes bullet points */
+}
+
+.navbar-brand {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    text-decoration: none; /* Removes underline from links */
+}
+
+.navbar-links {
+    display: flex;
+    align-items: center;
+    list-style: none; /* Ensure no bullets */
+}
+
+.navbar-links a, .navbar-links button {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.navbar-links a:hover, .navbar-links button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    transition: background-color 0.3s;
+}

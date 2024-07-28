@@ -1,0 +1,26 @@
+.homepage {
+    text-align: center;
+    padding: 50px;
+    background: #f4f4f4; /* Light grey background */
+  }
+  
+  .homepage-header {
+    margin-bottom: 30px;
+  }
+  
+  .nav-button {
+    display: inline-block;
+    background-color: #0A68D4; /* Primary color */
+    color: white;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  .nav-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: scale(1.1); /* Slightly enlarge the buttons on hover */
+  }
+  

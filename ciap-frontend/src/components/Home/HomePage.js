@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './HomePage.css'; 
+import './HomePage.css'; // Add this line to import the CSS file
 
 function HomePage() {
   return (
@@ -10,8 +10,8 @@ function HomePage() {
         <p>Access your dashboard by logging in or registering.</p>
       </header>
       <div className="navigation">
-        <Link to="/login" className="nav-link">Login</Link>
-        <Link to="/register" className="nav-link">Register</Link>
+        <Link to="/login" className="nav-button">Login</Link>
+        <Link to="/register" className="nav-button">Register</Link>
       </div>
     </div>
   );
