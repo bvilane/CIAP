@@ -14,8 +14,10 @@ function LoginForm() {
                 password
             });
             localStorage.setItem('token', response.data.access_token);
+            localStorage.setItem('is_admin', response.data.is_admin);
             alert('Login successful!');
-            // Redirect or perform other actions on success
+            // Redirect to Dashboard
+            window.location.href = response.data.is_admin ? '/admin-dashboard' : '/dashboard';
         } catch (error) {
             setError('Failed to login');
             console.error('Login error:', error.response || error);
