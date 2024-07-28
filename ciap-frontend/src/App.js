@@ -5,6 +5,7 @@ import Navbar from './components/Navbar';
 import Dashboard from './components/Dashboard';
 import RegisterForm from './components/RegisterForm';
 
+
 function App() {
   return (
     <Router>
