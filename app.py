@@ -4,7 +4,6 @@ from flask_migrate import Migrate
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 from flask_cors import CORS
 from werkzeug.security import generate_password_hash, check_password_hash
-import os
 
 app = Flask(__name__)
 CORS(app)  # Enables CORS for all domains and routes
@@ -49,7 +48,6 @@ def register():
     db.session.commit()
     return jsonify({"message": "User registered"}), 201
 
-
 @app.route('/login', methods=['POST'])
 def login():
     username = request.json.get('username')
@@ -59,7 +57,6 @@ def login():
         access_token = create_access_token(identity={"id": user.id, "is_admin": user.is_admin})
         return jsonify(access_token=access_token, is_admin=user.is_admin)
     return jsonify({"message": "Bad username or password"}), 401
-
 
 @app.route('/data_usage', methods=['POST'])
 @jwt_required()
@@ -78,7 +75,6 @@ def update_data_usage():
         db.session.commit()
         return jsonify({"message": "Data usage updated"}), 200
     return jsonify({"message": "User not found"}), 404
-
 
 if __name__ == '__main__':
     app.run(debug=True)
