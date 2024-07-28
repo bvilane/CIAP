@@ -2,9 +2,12 @@ from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
+from flask_cors import CORS
 from werkzeug.security import generate_password_hash, check_password_hash
+import os
 
 app = Flask(__name__)
+CORS(app)  # Enables CORS for all domains and routes
 
 # Configuration
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://ciap_user:B%40fbhs2030%21@localhost/ciap_db'
@@ -19,7 +22,7 @@ migrate = Migrate(app, db)
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
-    password = db.Column(db.String(255), nullable=False)  # Increased length
+    password = db.Column(db.String(255), nullable=False)  # Increased length for hash
     data_used = db.Column(db.Float, default=0.0)
 
 # Initialize database
