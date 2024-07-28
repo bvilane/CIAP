@@ -5,7 +5,7 @@ import Dashboard from './components/Dashboard';
 import AdminDashboard from './components/AdminDashboard';
 import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm'; // Assume you have this component
-import HomePage from './components/HomePage';
+import HomePage from './components/Home/HomePage';
 
 function App() {
   const token = localStorage.getItem('token');
