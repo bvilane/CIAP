@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import './Navbar.css';  // Assuming a separate CSS file for Navbar styles
+import './Navbar.css';  // Make sure this path is correct
 
 function Navbar() {
   const navigate = useNavigate();
@@ -10,7 +10,7 @@ function Navbar() {
   const logout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('is_admin');
-    navigate('/');  // Using navigate for redirection
+    navigate('/');  // Redirect to homepage after logout
   };
 
   return (

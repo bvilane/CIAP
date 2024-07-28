@@ -1,44 +1,46 @@
+/* Navbar.css */
 .navbar {
-    background-color: #0A68D4;
-    padding: 10px 20px;
+    background-color: #0A68D4; /* Consistent theme color */
+    color: white;
+    padding: 0.8rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .navbar-brand {
-    color: white;
     font-size: 24px;
+    font-weight: bold;
     text-decoration: none;
-}
-
-.navbar-links {
-    display: flex;
-    align-items: center;
+    color: white;
 }
 
 .navbar-links a {
     color: white;
-    margin-right: 20px;
     text-decoration: none;
-    font-size: 18px;
+    margin-left: 20px;
+    padding: 8px 16px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
 }
 
 .navbar-links a:hover {
-    text-decoration: underline;
+    background-color: #0056b3; /* Darker shade of the navbar color */
 }
 
 button {
-    padding: 8px 16px;
-    background-color: #FF5722;
+    background: none;
     color: white;
     border: none;
     cursor: pointer;
-    border-radius: 4px;
+    padding: 8px 16px;
     font-size: 16px;
+    margin-left: 20px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
 }
 
 button:hover {
-    background-color: #E64A19;
+    background-color: #ff6347; /* Tomato for a noticeable action */
 }
