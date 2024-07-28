@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';  // Import useHistory
 
 function RegisterForm() {
     const [formData, setFormData] = useState({
@@ -11,6 +12,7 @@ function RegisterForm() {
         zone: ''
     });
     const [error, setError] = useState('');
+    const history = useHistory();  // Initialize useHistory
 
     const handleInputChange = (event) => {
         setFormData({
@@ -23,8 +25,8 @@ function RegisterForm() {
         event.preventDefault();
         try {
             const response = await axios.post('http://localhost:5000/register', formData);
-            alert('Registration successful!');
-            // Redirect or perform other actions on success
+            alert('Registration successful! You can now login.');
+            history.push('/login');  // Redirect to login page on success
         } catch (error) {
             setError('Failed to register');
             console.error('Registration error:', error.response?.data?.message || error.message);
