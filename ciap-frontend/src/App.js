@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import Navbar from './components/Navbar';
+import Header from './components/Header'; // Make sure this is correctly imported
+import Footer from './components/Footer'; // Make sure this is correctly imported
 import Dashboard from './components/Dashboard';
 import AdminDashboard from './components/AdminDashboard';
 import LoginForm from './components/LoginForm';
@@ -13,14 +14,17 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/dashboard" element={token && !isAdmin ? <Dashboard /> : <Navigate replace to="/" />} />
-        <Route path="/admin-dashboard" element={token && isAdmin ? <AdminDashboard /> : <Navigate replace to="/" />} />
-        <Route path="/login" element={!token ? <LoginForm /> : (isAdmin ? <Navigate replace to="/admin-dashboard" /> : <Navigate replace to="/dashboard" />)} />
-        <Route path="/register" element={!token ? <RegisterForm /> : <Navigate replace to="/" />} />
-      </Routes>
+      <Header />
+      <div style={{ minHeight: 'calc(100vh - 80px)' }}> {/* Adjust height as necessary */}
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/dashboard" element={token && !isAdmin ? <Dashboard /> : <Navigate replace to="/" />} />
+          <Route path="/admin-dashboard" element={token && isAdmin ? <AdminDashboard /> : <Navigate replace to="/" />} />
+          <Route path="/login" element={!token ? <LoginForm /> : (isAdmin ? <Navigate replace to="/admin-dashboard" /> : <Navigate replace to="/dashboard" />)} />
+          <Route path="/register" element={!token ? <RegisterForm /> : <Navigate replace to="/" />} />
+        </Routes>
+      </div>
+      <Footer />
     </BrowserRouter>
   );
 }
