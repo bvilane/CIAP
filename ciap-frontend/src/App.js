@@ -4,7 +4,8 @@ import Navbar from './components/Navbar';
 import Dashboard from './components/Dashboard';
 import AdminDashboard from './components/AdminDashboard';
 import LoginForm from './components/LoginForm';
-import HomePage from './components/HomePage'; 
+import RegisterForm from './components/RegisterForm'; // Assume you have this component
+import HomePage from './components/HomePage';
 
 function App() {
   const token = localStorage.getItem('token');
@@ -14,11 +15,11 @@ function App() {
     <BrowserRouter>
       <Navbar />
       <Routes>
-        <Route path="/" element={!token ? <HomePage /> : (isAdmin ? <Navigate replace to="/admin-dashboard" /> : <Navigate replace to="/dashboard" />)} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/dashboard" element={token && !isAdmin ? <Dashboard /> : <Navigate replace to="/" />} />
         <Route path="/admin-dashboard" element={token && isAdmin ? <AdminDashboard /> : <Navigate replace to="/" />} />
         <Route path="/login" element={!token ? <LoginForm /> : (isAdmin ? <Navigate replace to="/admin-dashboard" /> : <Navigate replace to="/dashboard" />)} />
-        {/* Additional routes can be redirected similarly to ensure proper access control */}
+        <Route path="/register" element={!token ? <RegisterForm /> : <Navigate replace to="/" />} />
       </Routes>
     </BrowserRouter>
   );
