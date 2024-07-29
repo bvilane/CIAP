@@ -10,6 +10,8 @@ function RegisterForm() {
         email: '',
         username: '',
         password: '',
+        country: 'South Africa',
+        town: 'Soweto',
         zone: ''
     });
     const [error, setError] = useState('');
@@ -59,6 +61,20 @@ function RegisterForm() {
                     <label>Password:</label>
                     <input type="password" name="password" value={formData.password} onChange={handleInputChange} />
                     <small className="password-hint"><span className="please-note">PLEASE NOTE:</span> Your password must include at least 8 characters, one uppercase letter, one lowercase letter, one number, and one special character.</small>
+                </div>
+                <div className="form-group">
+                    <label>Country:</label>
+                    <select name="country" value={formData.country} onChange={handleInputChange}>
+                        <option value="South Africa">South Africa</option>
+                        <option value="other-coming-soon">Other (coming soon)</option>
+                    </select>
+                </div>
+                <div className="form-group">
+                    <label>Town:</label>
+                    <select name="town" value={formData.town} onChange={handleInputChange}>
+                        <option value="Soweto">Soweto</option>
+                        <option value="other-coming-soon">Other (coming soon)</option>
+                    </select>
                 </div>
                 <div className="form-group">
                     <label>Zone:</label>
