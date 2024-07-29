@@ -1,11 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './HomePage.css'; // Add this line to import the CSS file
+import './HomePage.css';
+import logo from '../../images/AfriFi Logo.svg'; 
 
 function HomePage() {
   return (
     <div className="homepage">
       <header className="homepage-header">
+      <img src={logo} alt="AfriFi Logo" className="logo" />
         <h1>Welcome to your CIAP</h1>
         <p>Access your dashboard by logging in or registering.</p>
       </header>

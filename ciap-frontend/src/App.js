@@ -19,10 +19,10 @@ function App() {
       return <Navigate replace to="/login" />;
     }
     if (adminRequired && !isAdmin) {
-      return <Navigate replace to="/dashboard" />;
+      return <Navigate replace to="/" />;
     }
     if (!adminRequired && isAdmin) {
-      return <Navigate replace to="/admin-dashboard" />;
+      return <Navigate replace to="/" />;
     }
     return <Component />;
   };
@@ -35,7 +35,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/dashboard" element={getRouteElement(Dashboard)} />
           <Route path="/admin-dashboard" element={getRouteElement(AdminDashboard, true)} />
-          <Route path="/login" element={!token ? <LoginForm /> : isAdmin ? <Navigate replace to="/admin-dashboard" /> : <Navigate replace to="/dashboard" />} />
+          <Route path="/login" element={!token ? <LoginForm /> : <Navigate replace to="/" />} />
           <Route path="/register" element={!token ? <RegisterForm /> : <Navigate replace to="/" />} />
         </Routes>
       </div>

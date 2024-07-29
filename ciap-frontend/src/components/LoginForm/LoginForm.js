@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function LoginForm() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const [success, setSuccess] = useState('');
+    const navigate = useNavigate();
 
     const handleLogin = async (event) => {
         event.preventDefault();
@@ -15,9 +18,16 @@ function LoginForm() {
             });
             localStorage.setItem('token', response.data.access_token);
             localStorage.setItem('is_admin', response.data.is_admin);
-            alert('Login successful!');
-            // Redirect to Dashboard
-            window.location.href = response.data.is_admin ? '/admin-dashboard' : '/dashboard';
+            
+            if (response.data.is_admin) {
+                setSuccess('Admin login successful!');
+            } else {
+                setSuccess('Login successful! You have received 500 MB free to browse the resources.');
+            }
+
+            setTimeout(() => {
+                navigate('/');
+            }, 2000);
         } catch (error) {
             setError('Failed to login');
             console.error('Login error:', error.response || error);
@@ -28,6 +38,7 @@ function LoginForm() {
         <div>
             <h2>Login</h2>
             {error && <p>{error}</p>}
+            {success && <p>{success}</p>}
             <form onSubmit={handleLogin}>
                 <label>
                     Username:

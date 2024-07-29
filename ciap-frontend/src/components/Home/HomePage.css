@@ -1,24 +1,24 @@
 /* HomePage.css */
-.home-page {
+.homepage {
   text-align: center;
   margin-top: 50px;
 }
 
-.home-page h1 {
+.homepage-header h1 {
   font-size: 48px;
   color: #0A68D4;
 }
 
-.home-page p {
+.homepage-header p {
   font-size: 24px;
   color: #555;
 }
 
-.home-page-buttons {
+.navigation {
   margin-top: 30px;
 }
 
-.home-page .btn {
+.nav-button {
   display: inline-block;
   padding: 10px 20px;
   margin: 0 10px;
@@ -30,6 +30,6 @@
   transition: background-color 0.3s;
 }
 
-.home-page .btn:hover {
+.nav-button:hover {
   background-color: #084a9d;
 }
