@@ -19,10 +19,7 @@ function App() {
       return <Navigate replace to="/login" />;
     }
     if (adminRequired && !isAdmin) {
-      return <Navigate replace to="/dashboard" />;
-    }
-    if (!adminRequired && isAdmin) {
-      return <Navigate replace to="/admin-dashboard" />;
+      return <Navigate replace to="/" />;
     }
     return <Component />;
   };
