@@ -6,7 +6,7 @@ function HomePage() {
   return (
     <div className="homepage">
       <header className="homepage-header">
-        <h1>Welcome to CIAP</h1>
+        <h1>Welcome to your CIAP</h1>
         <p>Access your dashboard by logging in or registering.</p>
       </header>
       <div className="navigation">
