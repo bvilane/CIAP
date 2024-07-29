@@ -1,50 +1,27 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import './Header.css';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './Header.css'; // Ensure this path is correct
 
 const Header = () => {
-    const navigate = useNavigate();
-    const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('token'));
-
-    useEffect(() => {
-        // Set up a listener for changes in authentication status
-        const handleAuthChange = () => {
-            setIsLoggedIn(localStorage.getItem('token'));
-        };
-
-        // You might emit an event when login or logout happens elsewhere in your app
-        window.addEventListener('authChange', handleAuthChange);
-
-        return () => {
-            window.removeEventListener('authChange', handleAuthChange);
-        };
-    }, []);
+    const isLoggedIn = localStorage.getItem('token'); // Check if user is logged in
 
     const handleLogout = () => {
         localStorage.removeItem('token');
-        setIsLoggedIn(null);
-        navigate('/login', { replace: true });  // Ensure user cannot go back to dashboard after logout
-        window.dispatchEvent(new Event('authChange'));  // Notify application of auth change
+        localStorage.removeItem('is_admin');
+        window.location.href = '/';
     };
 
     return (
-        <div className="header">
+        <div className="header"> {/* Use 'header' to match CSS */}
             <div className="logo">
-                <Link to="/" className="navbar-brand">CIAP</Link>
+                <Link to="/" className="navbar-brand">CIAP</Link> {/* Use 'navbar-brand' under 'logo' */}
             </div>
-            <nav className="navigation">
+            <nav className="navigation"> {/* Use 'navigation' for nav links */}
                 <Link to="/" className="nav-link">Home</Link>
-                {isLoggedIn ? (
-                    <>
-                        <Link to="/dashboard" className="nav-link">Dashboard</Link>
-                        <button onClick={handleLogout} className="nav-link" style={{background: 'none', border: 'none', color: 'white', cursor: 'pointer'}}>Logout</button>
-                    </>
-                ) : (
-                    <>
-                        <Link to="/login" className="nav-link">Login</Link>
-                        <Link to="/register" className="nav-link">Register</Link>
-                    </>
-                )}
+                {isLoggedIn && <Link to="/dashboard" className="nav-link">Dashboard</Link>}
+                {!isLoggedIn && <Link to="/login" className="nav-link">Login</Link>}
+                {!isLoggedIn && <Link to="/register" className="nav-link">Register</Link>}
+                {isLoggedIn && <button onClick={handleLogout} className="nav-link">Logout</button>}
             </nav>
         </div>
     );
