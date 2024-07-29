@@ -23,8 +23,9 @@ const nodes = [
     { id: 20, name: "Node B10", serial: "SN1020", zone: "Zone 6", status: true }
 ];
 
-function NodesTable() {
-    return (
+const NodesTable = () => (
+    <div className="nodes-table">
+        <h3>Network Nodes</h3>
         <table>
             <thead>
                 <tr>
@@ -39,15 +40,15 @@ function NodesTable() {
                     <tr key={node.id}>
                         <td>{node.name}</td>
                         <td>{node.serial}</td>
-                        <td>{node.zone}</td>
-                        <td style={{ color: node.status ? 'green' : 'red' }}>
-                            {node.status ? 'Active' : 'Inactive'}
+                        <td>{`Zone ${node.zone}`}</td>
+                        <td style={{ color: node.status === 'active' ? 'green' : 'red' }}>
+                            {node.status}
                         </td>
                     </tr>
                 ))}
             </tbody>
         </table>
-    );
-}
+    </div>
+);
 
 export default NodesTable;

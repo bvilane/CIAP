@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Header from './Header';
 import Sidebar from './Sidebar';
 import NetworkDashboard from './NetworkDashboard';
-import NodesTable from './NodesTable';  // Ensure this import is correct
+import NodesTable from './NodesTable';
 import './AdminDashboard.css'; // Adjust the path based on where you save the file
 
 function AdminDashboard() {
@@ -16,10 +16,8 @@ function AdminDashboard() {
     <div className='grid-container'>
       <Header openSidebar={openSidebar} />
       <Sidebar openSidebarToggle={openSidebarToggle} openSidebar={openSidebar} />
-      <div className="main-content">
-        <NetworkDashboard />
-        <NodesTable />  
-      </div>
+      <NetworkDashboard />
+      <NodesTable />
     </div>
   );
 }
