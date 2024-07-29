@@ -5,7 +5,6 @@ import './Header.css'; // Ensure this path is correct
 const Header = () => {
     const navigate = useNavigate();
     const isLoggedIn = localStorage.getItem('token'); // Check if user is logged in
-    const isAdmin = localStorage.getItem('is_admin') === 'true';
 
     const handleLogout = () => {
         localStorage.removeItem('token');
@@ -20,12 +19,7 @@ const Header = () => {
             </div>
             <nav className="navigation"> {/* Use 'navigation' for nav links */}
                 <Link to="/" className="nav-link">Home</Link>
-                {isLoggedIn && (
-                    <>
-                        <Link to={isAdmin ? "/admin-dashboard" : "/dashboard"} className="nav-link">Dashboard</Link>
-                        <button className="nav-link" onClick={handleLogout}>Logout</button>
-                    </>
-                )}
+                {isLoggedIn && <button className="nav-link" onClick={handleLogout}>Logout</button>}
                 {!isLoggedIn && <Link to="/login" className="nav-link">Login</Link>}
                 {!isLoggedIn && <Link to="/register" className="nav-link">Register</Link>}
             </nav>
