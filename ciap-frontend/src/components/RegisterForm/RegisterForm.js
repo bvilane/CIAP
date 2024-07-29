@@ -28,7 +28,7 @@ function RegisterForm() {
             alert('Registration successful! You can now login.');
             navigate('/login');
         } catch (error) {
-            setError('Failed to register');
+            setError(`Failed to register: ${error.response?.data?.message || error.message}`);
             console.error('Registration error:', error.response?.data?.message || error.message);
         }
     };

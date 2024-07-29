@@ -21,15 +21,17 @@ function LoginForm() {
             
             if (response.data.is_admin) {
                 setSuccess('Admin login successful!');
+                setTimeout(() => {
+                    navigate('/admin-dashboard');
+                }, 2000);
             } else {
                 setSuccess('Login successful! You have received 500 MB free to browse the resources.');
+                setTimeout(() => {
+                    navigate('/dashboard');
+                }, 2000);
             }
-
-            setTimeout(() => {
-                navigate('/');
-            }, 2000);
         } catch (error) {
-            setError('Failed to login');
+            setError(`Failed to login: ${error.response?.data?.message || error.message}`);
             console.error('Login error:', error.response || error);
         }
     };

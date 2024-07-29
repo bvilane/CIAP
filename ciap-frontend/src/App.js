@@ -21,9 +21,6 @@ function App() {
     if (adminRequired && !isAdmin) {
       return <Navigate replace to="/" />;
     }
-    if (!adminRequired && isAdmin) {
-      return <Navigate replace to="/" />;
-    }
     return <Component />;
   };
 
@@ -35,8 +32,8 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/dashboard" element={getRouteElement(Dashboard)} />
           <Route path="/admin-dashboard" element={getRouteElement(AdminDashboard, true)} />
-          <Route path="/login" element={!token ? <LoginForm /> : <Navigate replace to="/" />} />
-          <Route path="/register" element={!token ? <RegisterForm /> : <Navigate replace to="/" />} />
+          <Route path="/login" element={<LoginForm />} />
+          <Route path="/register" element={<RegisterForm />} />
         </Routes>
       </div>
       <Footer />
