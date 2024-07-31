@@ -7,18 +7,19 @@ import AdminDashboard from './components/AdminDashboard/AdminDashboard';
 import LoginForm from './components/LoginForm/LoginForm';
 import RegisterForm from './components/RegisterForm/RegisterForm';
 import HomePage from './components/Home/HomePage';
-import './App.css';
+import './App.css'; // Global styles
 
 function App() {
   const token = localStorage.getItem('token');
   const isAdmin = localStorage.getItem('is_admin') === 'true';
 
+  // Function to determine redirection based on authentication and role
   const getRouteElement = (Component, adminRequired = false) => {
     if (!token) {
       return <Navigate replace to="/login" />;
     }
     if (adminRequired && !isAdmin) {
-      return <Navigate replace to="/" />;
+      return <Navigate replace to="/dashboard" />;
     }
     if (!adminRequired && isAdmin) {
       return <Navigate replace to="/admin-dashboard" />;

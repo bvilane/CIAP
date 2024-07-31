@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import './RegisterForm.css';
 
 function RegisterForm() {
     const [formData, setFormData] = useState({
@@ -59,7 +60,7 @@ function RegisterForm() {
                 <div className="form-group">
                     <label>Password:</label>
                     <input type="password" name="password" value={formData.password} onChange={handleInputChange} />
-                    <small className="hint">Please note: Password must be at least 8 characters long and include an uppercase letter, a number, and a special character.</small>
+                    <small className="hint"><span style={{ color: 'red', textTransform: 'uppercase' }}>Please note:</span> Password must be at least 8 characters long and include an uppercase letter, a number, and a special character.</small>
                 </div>
                 <div className="form-group">
                     <label>Country:</label>

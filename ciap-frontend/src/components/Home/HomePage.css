@@ -1,21 +1,31 @@
-/* HomePage.css */
 .homepage {
   text-align: center;
   margin-top: 50px;
 }
 
-.homepage-header h1 {
-  font-size: 48px;
-  color: #0A68D4;
+.homepage-header {
+  margin-bottom: 30px;
 }
 
-.homepage-header p {
+.logo {
+  width: 80%; /* Adjust the size here to span the length of the heading */
+  max-width: 600px; /* Ensuring a maximum width for larger screens */
+  margin-bottom: 10px; /* Ensure margin is sufficient */
+}
+
+.homepage h1 {
+  font-size: 48px;
+  color: #0A68D4;
+  margin-top: 10px; /* Reduce the top margin to lessen space */
+}
+
+.homepage p {
   font-size: 24px;
   color: #555;
 }
 
 .navigation {
-  margin-top: 30px;
+  margin-bottom: 30px;
 }
 
 .nav-button {
@@ -32,4 +42,57 @@
 
 .nav-button:hover {
   background-color: #084a9d;
+}
+
+.articles-section {
+  margin-top: 50px;
+  margin-bottom: 50px; /* Add margin-bottom to keep it away from the footer */
+}
+
+.articles {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.article {
+  background-color: #f4f4f9;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: calc(25% - 20px);
+  box-sizing: border-box;
+}
+
+.article h3 {
+  font-size: 20px;
+  color: #0A68D4;
+}
+
+.article p {
+  font-size: 16px;
+  color: #555;
+}
+
+.view-more-button {
+  margin-top: 30px;
+  display: inline-block;
+}
+
+@media (max-width: 768px) {
+  .logo {
+    width: 100%; /* Ensuring the logo fits smaller screens */
+    max-width: none;
+  }
+
+  .article {
+    width: calc(50% - 20px); /* Two articles per row on smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .article {
+    width: calc(100% - 20px); /* Single article per row on very small screens */
+  }
 }
