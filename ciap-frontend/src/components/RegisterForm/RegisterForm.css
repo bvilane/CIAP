@@ -1,27 +1,14 @@
-/* RegisterForm.css */
-.register-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    background-color: #f4f4f4;
+.container {
+    max-width: 500px;
+    margin: 0 auto;
     padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
 }
 
 h2 {
-    margin-bottom: 20px;
-    font-size: 24px;
-    color: #333;
-}
-
-.register-form {
-    width: 100%;
-    max-width: 400px;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
 .form-group {
@@ -32,51 +19,35 @@ label {
     display: block;
     font-weight: bold;
     margin-bottom: 5px;
-    color: #333;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="password"],
-select {
+input[type="text"], input[type="email"], input[type="password"], select {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 5px;
+    padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    font-size: 16px;
 }
 
-button[type="submit"] {
+button {
     width: 100%;
-    padding: 12px;
+    padding: 10px;
     background-color: #0A68D4;
-    color: #fff;
+    color: white;
     border: none;
     border-radius: 4px;
     font-size: 16px;
     cursor: pointer;
-    margin-top: 10px;
 }
 
-button[type="submit"]:hover {
+button:hover {
     background-color: #084a9d;
-}
-
-.password-hint {
-    color: black;
-    font-size: 12px;
-    margin-top: 5px;
-    display: block;
-}
-
-.password-hint .please-note {
-    color: red;
-    text-transform: uppercase;
 }
 
 .error-message {
     color: red;
-    font-size: 14px;
-    margin-bottom: 15px;
+}
+
+.hint {
+    color: red;
+    font-weight: bold;
 }
