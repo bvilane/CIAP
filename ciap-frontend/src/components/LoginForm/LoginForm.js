@@ -37,9 +37,9 @@ function LoginForm() {
     };
 
     return (
-        <div>
+        <div className="login-container">
             <h2>Login</h2>
-            {error && <p>{error}</p>}
+            {error && <p className="error-message">{error}</p>}
             {success && <p>{success}</p>}
             <form onSubmit={handleLogin}>
                 <label>
