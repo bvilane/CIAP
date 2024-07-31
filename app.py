@@ -5,10 +5,10 @@ from flask_jwt_extended import JWTManager, create_access_token, jwt_required, ge
 from flask_cors import CORS
 from werkzeug.security import generate_password_hash, check_password_hash
 import os
-import re  
+import re
 
 app = Flask(__name__)
-CORS(app)  # Enables CORS for all domains and routes
+CORS(app)
 
 # Configuration
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://ciap_user:B%40fbhs2030%21@localhost/ciap_db'
@@ -33,7 +33,6 @@ class User(db.Model):
     data_used = db.Column(db.Float, default=0.0)
     is_admin = db.Column(db.Boolean, default=False)
 
-# Initialize database
 with app.app_context():
     db.create_all()
 
@@ -49,16 +48,18 @@ def register():
     email = request.json.get('email')
     username = request.json.get('username')
     password = request.json.get('password')
+    country = request.json.get('country', 'South Africa')
+    town = request.json.get('town', 'Soweto')
     zone = request.json.get('zone')
-    
+
     if User.query.filter_by(email=email).first() or User.query.filter_by(username=username).first():
         return jsonify({"error": "Email or Username already taken"}), 409
 
     if not re.match(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$', password):
         return jsonify({"error": "Invalid password format"}), 400
-    
+
     hashed_password = generate_password_hash(password)
-    new_user = User(name=name, surname=surname, email=email, username=username, password=hashed_password, zone=zone)
+    new_user = User(name=name, surname=surname, email=email, username=username, password=hashed_password, country=country, town=town, zone=zone)
     db.session.add(new_user)
     try:
         db.session.commit()
@@ -77,22 +78,14 @@ def login():
         return jsonify({"access_token": access_token, "is_admin": user.is_admin}), 200
     return jsonify({"error": "Bad username or password"}), 401
 
-@app.route('/data_usage', methods=['POST'])
+@app.route('/data_usage', methods=['GET'])
 @jwt_required()
-def update_data_usage():
+def get_data_usage():
     claims = get_jwt_identity()
     user_id = claims['id']
-    is_admin = claims['is_admin']
-    
-    if not is_admin:
-        return jsonify({"error": "Unauthorized - Admins only"}), 403
-
-    data_used = request.json.get('data_used', 0.0)
     user = User.query.get(user_id)
     if user:
-        user.data_used += data_used
-        db.session.commit()
-        return jsonify({"message": "Data usage updated"}), 200
+        return jsonify({"data_used": user.data_used}), 200
     return jsonify({"error": "User not found"}), 404
 
 if __name__ == '__main__':
