@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 
 function LoginForm() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
-    const navigate = useNavigate();
 
     const handleLogin = async (event) => {
         event.preventDefault();
@@ -22,12 +20,12 @@ function LoginForm() {
             if (response.data.is_admin) {
                 setSuccess('Admin login successful!');
                 setTimeout(() => {
-                    navigate('/admin-dashboard');
+                    window.open('/admin-dashboard', '_blank'); // Opens admin dashboard in a new tab
                 }, 2000);
             } else {
                 setSuccess('Login successful! You have received 500 MB free to browse the resources.');
                 setTimeout(() => {
-                    navigate('/dashboard');
+                    window.open('/dashboard', '_blank'); // Opens user dashboard in a new tab
                 }, 2000);
             }
         } catch (error) {
