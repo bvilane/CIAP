@@ -14,15 +14,15 @@ const Header = () => {
     };
 
     return (
-        <div className="header"> {/* Use 'header' to match CSS */}
+        <div className="header">
             <div className="logo">
-                <Link to="/" className="navbar-brand">CIAP</Link> {/* Use 'navbar-brand' under 'logo' */}
+                <Link to="/" className="navbar-brand">CIAP</Link>
             </div>
-            <nav className="navigation"> {/* Use 'navigation' for nav links */}
+            <nav className="navigation">
                 <Link to="/" className="nav-link">Home</Link>
                 {isLoggedIn && isAdmin && <Link to="/admin-dashboard" className="nav-link">Admin Dashboard</Link>}
                 {isLoggedIn && !isAdmin && <Link to="/dashboard" className="nav-link">Dashboard</Link>}
-                {isLoggedIn && <button className="nav-link" onClick={handleLogout}>Logout</button>}
+                {isLoggedIn && <button className="logout-button" onClick={handleLogout}>Logout</button>}
                 {!isLoggedIn && <Link to="/login" className="nav-link">Login</Link>}
                 {!isLoggedIn && <Link to="/register" className="nav-link">Register</Link>}
             </nav>

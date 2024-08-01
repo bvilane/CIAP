@@ -3,21 +3,23 @@ import Header from './Header';
 import Sidebar from './Sidebar';
 import NetworkDashboard from './NetworkDashboard';
 import NodesTable from './NodesTable';
-import './AdminDashboard.css';
+import './AdminDashboard.css'; // Ensure this CSS is correctly linked
 
 function AdminDashboard() {
     const [openSidebarToggle, setOpenSidebarToggle] = useState(false);
 
-    const openSidebar = () => {
+    const toggleSidebar = () => {
         setOpenSidebarToggle(!openSidebarToggle);
     };
 
     return (
-        <div className='grid-container'>
-            <Header openSidebar={openSidebar} />
-            <Sidebar openSidebarToggle={openSidebarToggle} openSidebar={openSidebar} />
-            <NetworkDashboard />
-            <NodesTable />
+        <div className='admin-dashboard'>
+            <Header />
+            <Sidebar openSidebarToggle={openSidebarToggle} toggleSidebar={toggleSidebar} />
+            <div className="main-content">
+                <NetworkDashboard />
+                <NodesTable />
+            </div>
         </div>
     );
 }

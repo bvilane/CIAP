@@ -69,13 +69,13 @@ body {
     margin-right: 10px;
 }
 
-/* Main content area */
 .main-content {
     margin-left: 250px;
     padding: 20px;
+    transition: margin-left 0.3s;
+    background-color: #fff;
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
     #sidebar {
         left: -250px;
@@ -87,5 +87,15 @@ body {
 
     .main-content {
         margin-left: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .sidebar-list-item button {
+        padding: 12px 15px;
+    }
+
+    .main-content {
+        padding: 15px;
     }
 }
