@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function LoginForm() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    const [success, setSuccess] = useState('');
+    const navigate = useNavigate();
 
     const handleLogin = async (event) => {
         event.preventDefault();
@@ -16,21 +17,16 @@ function LoginForm() {
             });
             localStorage.setItem('token', response.data.access_token);
             localStorage.setItem('is_admin', response.data.is_admin);
-            
+
+            // Redirect based on the role
             if (response.data.is_admin) {
-                setSuccess('Admin login successful!');
-                setTimeout(() => {
-                    window.open('/admin-dashboard', '_blank'); // Opens admin dashboard in a new tab
-                }, 2000);
+                navigate('/admin-dashboard');
             } else {
-                setSuccess('Login successful! You have received 500 MB free to browse the resources.');
-                setTimeout(() => {
-                    window.open('/dashboard', '_blank'); // Opens user dashboard in a new tab
-                }, 2000);
+                navigate('/dashboard');
             }
         } catch (error) {
-            setError(`Failed to login: ${error.response?.data?.message || error.message}`);
-            console.error('Login error:', error.response || error);
+            setError('Failed to login');
+            console.error('Login error:', error);
         }
     };
 
@@ -38,7 +34,6 @@ function LoginForm() {
         <div>
             <h2>Login</h2>
             {error && <p>{error}</p>}
-            {success && <p>{success}</p>}
             <form onSubmit={handleLogin}>
                 <label>
                     Username:

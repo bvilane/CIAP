@@ -1,16 +1,15 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import './Header.css'; // Ensure this path is correct
+import './Header.css';
 
-const Header = () => {
+const Header = ({ auth, setAuth }) => {
     const navigate = useNavigate();
-    const isLoggedIn = localStorage.getItem('token'); // Check if user is logged in
-    const isAdmin = localStorage.getItem('is_admin') === 'true'; // Check if the user is admin
 
     const handleLogout = () => {
         localStorage.removeItem('token');
         localStorage.removeItem('is_admin');
-        navigate('/');
+        setAuth({ token: null, isAdmin: false }); // Update auth state
+        navigate('/login'); // Redirect to login after logout
     };
 
     return (
@@ -20,11 +19,9 @@ const Header = () => {
             </div>
             <nav className="navigation">
                 <Link to="/" className="nav-link">Home</Link>
-                {isLoggedIn && isAdmin && <Link to="/admin-dashboard" className="nav-link">Admin Dashboard</Link>}
-                {isLoggedIn && !isAdmin && <Link to="/dashboard" className="nav-link">Dashboard</Link>}
-                {isLoggedIn && <button className="logout-button" onClick={handleLogout}>Logout</button>}
-                {!isLoggedIn && <Link to="/login" className="nav-link">Login</Link>}
-                {!isLoggedIn && <Link to="/register" className="nav-link">Register</Link>}
+                {auth.token && (auth.isAdmin ? <Link to="/admin-dashboard" className="nav-link">Admin Dashboard</Link> : <Link to="/dashboard" className="nav-link">Dashboard</Link>)}
+                {auth.token ? <button onClick={handleLogout} className="nav-link">Logout</button> : <Link to="/login" className="nav-link">Login</Link>}
+                {!auth.token && <Link to="/register" className="nav-link">Register</Link>}
             </nav>
         </div>
     );
