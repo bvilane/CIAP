@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import './LoginForm.css'; // Import the CSS file
 
 function LoginForm() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [message, setMessage] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
@@ -15,14 +17,22 @@ function LoginForm() {
                 username,
                 password
             });
+
             localStorage.setItem('token', response.data.access_token);
             localStorage.setItem('is_admin', response.data.is_admin);
 
-            // Redirect based on the role
             if (response.data.is_admin) {
-                navigate('/admin-dashboard');
+                setMessage('Admin login successful!');
+                setTimeout(() => {
+                    window.open('/admin-dashboard', '_blank'); // Open in a new tab
+                    navigate('/');
+                }, 2000);
             } else {
-                navigate('/dashboard');
+                setMessage('Login successful! You have received 500 MB free to browse the resources.');
+                setTimeout(() => {
+                    window.open('/dashboard', '_blank'); // Open in a new tab
+                    navigate('/');
+                }, 2000);
             }
         } catch (error) {
             setError('Failed to login');
@@ -31,10 +41,11 @@ function LoginForm() {
     };
 
     return (
-        <div>
-            <h2>Login</h2>
-            {error && <p>{error}</p>}
-            <form onSubmit={handleLogin}>
+        <div className="login-container">
+            <form className="login-form" onSubmit={handleLogin}>
+                <h2>Login</h2>
+                {message && <p>{message}</p>}
+                {error && <p className="error">{error}</p>}
                 <label>
                     Username:
                     <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
