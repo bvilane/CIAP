@@ -19,9 +19,9 @@ def serve(path):
         return send_from_directory(app.static_folder, 'index.html')
 
 # Configuration
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://ciap_user:B%40fbhs2030%21@localhost/ciap_db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLALCHEMY_DATABASE_URI', 'postgresql://default_uri')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['JWT_SECRET_KEY'] = '551d706b2e8e651d0450030b459eaf16684c5262be00a4cf3d9c888636a1f34bd38b46a9a71e57420d49d4f2a2bde5871108bfda9b3ed4fba70e8a01b3b05dc2a4c26ef287d411373270c579e8eb19d93c467b68ee25c006d4a5be30a3498ed46def6bf8664731290f5cfa3679b443ff85ac4248f1c3b9059235ec872de679508d8251df89bf8b9a995c82a2dbd2a44693f26ddc1a52e9daa5746dd6ef0773cca4556ef5f8889dd536c9bc7cbfc7f5a4350eba93850c6bd622baea78822a0c9eb568a4084dd801d97145c95054610045e01ea1eb36b7cdf25dab58de562a51583dbab94c34705c0224228a6b7762c3e7969a9d96fa222f03899367b8c1f9a1d1'
+app.config['JWT_SECRET_KEY'] = os.environ.get('JWT_SECRET_KEY', 'your_default_jwt_secret_key')
 
 db = SQLAlchemy(app)
 jwt = JWTManager(app)
