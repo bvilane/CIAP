@@ -19,9 +19,9 @@ def serve(path):
         return send_from_directory(app.static_folder, 'index.html')
 
 # Configuration
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI', 'postgresql://ciap_user:B%40fbhs2030%21@localhost/ciap_db')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET_KEY', 'default_secret_key')
+app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET_KEY')
 
 db = SQLAlchemy(app)
 jwt = JWTManager(app)
