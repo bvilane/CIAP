@@ -40,9 +40,9 @@ const NodesTable = () => (
                     <tr key={node.id}>
                         <td>{node.name}</td>
                         <td>{node.serial}</td>
-                        <td>{`Zone ${node.zone}`}</td>
-                        <td style={{ color: node.status === 'active' ? 'green' : 'red' }}>
-                            {node.status}
+                        <td>{node.zone}</td>
+                        <td style={{ color: node.status ? 'green' : 'red' }}>
+                            {node.status ? 'Active' : 'Inactive'}
                         </td>
                     </tr>
                 ))}
