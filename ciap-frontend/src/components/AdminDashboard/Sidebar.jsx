@@ -10,17 +10,17 @@ function Sidebar({ openSidebarToggle, openSidebar }) {
             </div>
             <ul className='sidebar-list'>
                 <li className='sidebar-list-item'>
-                    <button onClick={() => {/* Add your function here for Users */}}>
+                    <button onClick={() => {/* No function yet */}}>
                         <BsPeopleFill className='icon' /> Users
                     </button>
                 </li>
                 <li className='sidebar-list-item'>
-                    <button onClick={() => {/* Add your function here for Network Status */}}>
+                    <button onClick={() => {/* No function yet */}}>
                         <BsGraphUp className='icon' /> Network Status
                     </button>
                 </li>
                 <li className='sidebar-list-item'>
-                    <button onClick={() => {/* Add your function here for Settings */}}>
+                    <button onClick={() => {/* No function yet */}}>
                         <BsFillGearFill className='icon' /> Settings
                     </button>
                 </li>

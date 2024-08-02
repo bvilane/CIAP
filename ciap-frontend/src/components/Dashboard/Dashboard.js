@@ -6,7 +6,7 @@ import Jobs from './Jobs'; // Import the Jobs component
 import './Dashboard.css'; // Ensure the CSS file is linked
 
 function Dashboard() {
-    const [dataUsage, setDataUsage] = useState({ data_used: 0, total_data: 500 }); // Assuming total data is 500 MB for demo
+    const [dataUsage, setDataUsage] = useState({ data_used: 0, total_data: 500 }); // Total data is 500 MB for demo
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {

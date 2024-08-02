@@ -3,7 +3,7 @@ import Header from './Header';
 import Sidebar from './Sidebar';
 import NetworkDashboard from './NetworkDashboard';
 import NodesTable from './NodesTable';
-import './AdminDashboard.css'; // Ensure this CSS is correctly linked
+import './AdminDashboard.css'; 
 
 function AdminDashboard() {
     const [openSidebarToggle, setOpenSidebarToggle] = useState(false);

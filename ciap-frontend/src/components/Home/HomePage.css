@@ -8,15 +8,15 @@
 }
 
 .logo {
-  width: 80%; /* Adjust the size here to span the length of the heading */
-  max-width: 600px; /* Ensuring a maximum width for larger screens */
-  margin-bottom: 10px; /* Ensure margin is sufficient */
+  width: 80%; 
+  max-width: 600px; 
+  margin-bottom: 10px; 
 }
 
 .homepage h1 {
   font-size: 48px;
   color: #0A68D4;
-  margin-top: 10px; /* Reduce the top margin to lessen space */
+  margin-top: 10px; 
 }
 
 .homepage p {
@@ -46,7 +46,7 @@
 
 .articles-section {
   margin-top: 50px;
-  margin-bottom: 50px; /* Add margin-bottom to keep it away from the footer */
+  margin-bottom: 50px; 
 }
 
 .articles {
@@ -82,17 +82,17 @@
 
 @media (max-width: 768px) {
   .logo {
-    width: 100%; /* Ensuring the logo fits smaller screens */
+    width: 100%; 
     max-width: none;
   }
 
   .article {
-    width: calc(50% - 20px); /* Two articles per row on smaller screens */
+    width: calc(50% - 20px); 
   }
 }
 
 @media (max-width: 480px) {
   .article {
-    width: calc(100% - 20px); /* Single article per row on very small screens */
+    width: calc(100% - 20px); 
   }
 }

@@ -1,4 +1,4 @@
-import './Footer.css'; // Ensure this path matches where your Footer.css is located
+import './Footer.css'; 
 
 const Footer = () => {
     return (
