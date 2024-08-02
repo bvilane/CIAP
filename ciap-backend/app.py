@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, send_from_directory, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
@@ -7,8 +7,16 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import os
 import re  
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='../ciap-frontend/build', static_url_path='')
 CORS(app)  # Enables CORS for all domains and routes
+
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def serve(path):
+    if path != "" and os.path.exists(app.static_folder + '/' + path):
+        return send_from_directory(app.static_folder, path)
+    else:
+        return send_from_directory(app.static_folder, 'index.html')
 
 # Configuration
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://ciap_user:B%40fbhs2030%21@localhost/ciap_db'
